@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const dotenv = require('dotenv');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -12,10 +13,11 @@ const compression = require('compression');
 const helmet = require('helmet');
 
 const app = express();
+dotenv.config({ path: '.env' })
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-const dev_db_url = 'mongodb+srv://dbUserKrishna:dbKrishna@pass@cluster0-gjcks.mongodb.net/expressDB?retryWrites=true&w=majority'
+const dev_db_url = process.env.ATLAS_URI;
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true ,useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
