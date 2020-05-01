@@ -69,7 +69,7 @@ exports.bookinstance_create_post = [
         const errors = validationResult(req);
 
         // Create a BookInstance object with escaped and trimmed data.
-        const bookinstance = new BookInstance(
+        let bookinstance = new BookInstance(
           { book: req.body.book,
             imprint: req.body.imprint,
             status: req.body.status,
@@ -173,7 +173,7 @@ exports.bookinstance_update_post = [
         const errors = validationResult(req);
 
         // Create a BookInstance object with escaped/trimmed data and current id.
-        const bookinstance = new BookInstance(
+        let bookinstance = new BookInstance(
           { book: req.body.book,
             imprint: req.body.imprint,
             status: req.body.status,

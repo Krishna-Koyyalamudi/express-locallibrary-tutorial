@@ -9,6 +9,7 @@ const { sanitizeBody } = require('express-validator/filter');
 const async = require('async');
 
 exports.index = function(req, res) {
+
     async.parallel({
         book_count: function(callback) {
             Book.count(callback);
@@ -30,20 +31,20 @@ exports.index = function(req, res) {
     });
 };
 
+
 // Display list of all books.
 exports.book_list = function(req, res, next) {
 
-    Book.find({}, 'title author')
-      .populate('author').exec(function (err, list_books) {
-        if (err) {return next(err)} 
-        else {
-              // Successful, so render
-              res.render('book_list', { title: 'Book List', book_list:  list_books});
-          }
-      });
-  
-  };
-  
+  Book.find({}, 'title author')
+    .populate('author').exec(function (err, list_books) {
+      if (err) {return next(err)} 
+      else{
+            // Successful, so render
+            res.render('book_list', { title: 'Book List', book_list:  list_books});
+      }
+    });
+
+};
 
 // Display detail page for a specific book.
 exports.book_detail = function(req, res, next) {

@@ -72,7 +72,7 @@ exports.author_create_post = [
         const errors = validationResult(req);
         
         // Create Author object with escaped and trimmed data
-        const author = new Author(
+        let author = new Author(
             {
                 first_name: req.body.first_name,
                 family_name: req.body.family_name,
@@ -193,7 +193,7 @@ exports.author_update_post = [
         const errors = validationResult(req);
 
         // Create Author object with escaped and trimmed data (and the old id!)
-        const author = new Author(
+        let author = new Author(
             {
                 first_name: req.body.first_name,
                 family_name: req.body.family_name,
