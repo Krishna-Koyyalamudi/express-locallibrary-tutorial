@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 
-app.use(compression()); //Compress all routes
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -17,6 +16,8 @@ const helmet = require('helmet');
 
 const app = express();
 app.use(helmet());
+app.use(compression()); //Compress all routes
+app.use(express.static(path.join(__dirname, 'public')));
 dotenv.config({ path: '.env' })
 
 // Set up mongoose connection
